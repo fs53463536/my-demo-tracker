@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroVanta Admin</title>
+</head>
+
+<body>
+
+    <h1>AeroVanta Logistics</h1>
+
+    <h2>Shipment Control Panel</h2>
+
+    <p>Create and manage demo shipments from here.</p>
+
+    <hr>
+
+    <h3>Create Demo Shipment</h3>
+
+    <label>Tracking Number</label><br>
+    <input type="text" id="adminTracking"><br><br>
+
+    <label>Recipient</label><br>
+    <input type="text" id="adminRecipient"><br><br>
+
+    <label>Destination</label><br>
+    <input type="text" id="adminDestination"><br><br>
+
+    <label>Status</label><br>
+    <select id="adminStatus">
+        <option>Processing</option>
+        <option>Picked Up</option>
+        <option>In Transit</option>
+        <option>Arrived</option>
+        <option>Delivered</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="createShipment()">Create Shipment</button>
+
+    <hr>
+
+    <h3>Update Shipment Status</h3>
+
+    <label>Tracking Number</label><br>
+    <input type="text" id="updateTracking"><br><br>
+
+    <label>New Status</label><br>
+    <select id="updateStatus">
+        <option>Processing</option>
+        <option>Picked Up</option>
+        <option>In Transit</option>
+        <option>Arrived</option>
+        <option>Delivered</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="updateShipmentStatus()">Update Status</button>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
