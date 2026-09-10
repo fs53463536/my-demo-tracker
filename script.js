@@ -1,17 +1,68 @@
+// =========================
+// SHIPMENT DATABASE
+// =========================
+
 const shipments = {
-    "DEMO_7403_FOTKO2P9": {
-        recipient: "Demo Recipient",
-        destination: "Johannesburg, South Africa",
+    "AV-2026-000001": {
+        sender: "Sample Sender",
+        senderCountry: "South Africa",
+        senderLocation: "Johannesburg",
+        recipient: "Sample Recipient",
+        country: "South Africa",
+        destination: "Johannesburg",
+        airport: "O.R. Tambo International Airport",
+        package: "Parcel",
+        weight: "5",
         status: "In Transit"
     }
 };
 
 
-// Load saved shipments
+// =========================
+// LOAD SAVED SHIPMENTS
+// =========================
+
 const savedShipments = localStorage.getItem("shipments");
 
 if (savedShipments) {
-    Object.assign(shipments, JSON.parse(savedShipments));
+    try {
+        Object.assign(
+            shipments,
+            JSON.parse(savedShipments)
+        );
+    } catch (error) {
+        console.log(
+            "Saved shipment data could not be loaded."
+        );
+    }
+}
+
+
+// =========================
+// GENERATE TRACKING NUMBER
+// =========================
+
+function generateTrackingNumber() {
+
+    const year = new Date().getFullYear();
+
+    let tracking;
+
+    do {
+
+        const randomNumber = Math.floor(
+            100000 + Math.random() * 900000
+        );
+
+        tracking =
+            "AV-" +
+            year +
+            "-" +
+            randomNumber;
+
+    } while (shipments[tracking]);
+
+    return tracking;
 }
 
 
@@ -21,13 +72,83 @@ if (savedShipments) {
 
 function trackShipment() {
 
+    const trackingInput =
+        document.getElementById("trackingCode");
+
+    const result =
+        document.getElementById("trackingResult");
+
+    if (!trackingInput || !result) {
+        return;
+    }
+
     const code =
-        document.getElementById("trackingCode").value.trim();
+        trackingInput.value.trim().toUpperCase();
+
+
+    if (!code) {
+
+        result.innerHTML = `
+            <div class="shipment-result">
+
+                <div class="shipment-body">
+
+                    <h3>
+                        Please enter a tracking number
+                    </h3>
+
+                    <p>
+                        Enter your AeroVanta tracking
+                        number above and try again.
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+
+        return;
+    }
+
 
     const shipment = shipments[code];
 
+
     if (!shipment) {
-        alert("Demo tracking number not found.");
+
+        result.innerHTML = `
+            <div class="shipment-result">
+
+                <div class="shipment-header">
+
+                    <h3>
+                        Shipment Not Found
+                    </h3>
+
+                    <p>
+                        Tracking Number: ${code}
+                    </p>
+
+                </div>
+
+
+                <div class="shipment-body">
+
+                    <h4>
+                        Please check your tracking number
+                    </h4>
+
+                    <p>
+                        We could not find a shipment
+                        matching the tracking number
+                        you entered.
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+
         return;
     }
 
@@ -45,143 +166,483 @@ function trackShipment() {
         statuses.indexOf(shipment.status);
 
 
+    // =========================
+    // SHIPMENT PROGRESS
+    // =========================
+
     let timeline = "";
 
 
-    statuses.forEach(function(status, index) {
+    statuses.forEach(
+        function(status, index) {
 
-        let className = "";
+            let className = "";
 
-        if (index < currentIndex) {
-            className = "completed";
+
+            if (index < currentIndex) {
+
+                className = "completed";
+
+            }
+
+
+            if (index === currentIndex) {
+
+                className = "active";
+
+            }
+
+
+            timeline += `
+                <div class="timeline-item ${className}">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <strong>
+                            ${status}
+                        </strong>
+
+                        <span>
+                            ${
+                                index < currentIndex
+                                ? "Completed"
+                                : index === currentIndex
+                                ? "Current shipment status"
+                                : "Pending"
+                            }
+                        </span>
+
+                    </div>
+
+                </div>
+            `;
         }
+    );
 
-        else if (index === currentIndex) {
-            className = "active";
+
+    // =========================
+    // SHIPMENT HISTORY
+    // =========================
+
+    let history = "";
+
+
+    statuses.forEach(
+        function(status, index) {
+
+            if (index <= currentIndex) {
+
+                history += `
+                    <div style="
+                        padding:15px 0;
+                        border-bottom:1px solid #e5eaf0;
+                    ">
+
+                        <strong style="
+                            color:#123d6b;
+                        ">
+
+                            ${status}
+
+                        </strong>
+
+                        <p style="
+                            margin:5px 0 0;
+                            color:#687789;
+                        ">
+
+                            Shipment record updated
+
+                        </p>
+
+                    </div>
+                `;
+            }
         }
+    );
 
 
-        timeline +=
-            '<div class="timeline-item ' + className + '">' +
+    // =========================
+    // TRACKING RESULT
+    // =========================
 
-                '<div class="timeline-dot"></div>' +
+    result.innerHTML = `
 
-                '<div class="timeline-content">' +
-
-                    '<strong>' +
-                    status +
-                    '</strong>' +
-
-                '</div>' +
-
-            '</div>';
-    });
+        <div class="shipment-result">
 
 
-    document.getElementById("trackingResult").innerHTML =
+            <div class="shipment-header">
 
-        '<div class="shipment-result">' +
+                <h3>
+                    AeroVanta Shipment Tracking
+                </h3>
 
+                <p>
+                    Tracking Number: ${code}
+                </p>
 
-            '<div class="shipment-header">' +
-
-                '<h3>AeroVanta Shipment Tracking</h3>' +
-
-                '<p>' +
-                'Tracking Number: ' +
-                code +
-                '</p>' +
-
-            '</div>' +
+            </div>
 
 
-            '<div class="shipment-body">' +
+            <div class="shipment-body">
 
 
-                '<div class="shipment-grid">' +
+                <!-- CURRENT STATUS -->
+
+                <div class="status-panel">
+
+                    <h4>
+                        Current Status
+                    </h4>
+
+                    <strong>
+                        ${shipment.status}
+                    </strong>
+
+                    <p style="
+                        margin-top:10px;
+                        color:#687789;
+                    ">
+
+                        Shipment tracking information
+                        is available.
+
+                    </p>
+
+                </div>
 
 
-                    '<div class="info-card">' +
+                <!-- SHIPMENT INFORMATION -->
 
-                        '<h4>Sender Information</h4>' +
-
-                        '<p>International Shipping Department</p>' +
-
-                        '<p>Global Operations</p>' +
-
-                    '</div>' +
+                <h4 class="section-title">
+                    Shipment Information
+                </h4>
 
 
-                    '<div class="info-card">' +
-
-                        '<h4>Receiver Information</h4>' +
-
-                        '<p>' +
-                        shipment.recipient +
-                        '</p>' +
-
-                        '<p>' +
-                        shipment.destination +
-                        '</p>' +
-
-                    '</div>' +
+                <div class="shipment-grid">
 
 
-                    '<div class="info-card">' +
+                    <!-- SENDER -->
 
-                        '<h4>Shipment Details</h4>' +
+                    <div class="info-card">
 
-                        '<p><strong>Tracking:</strong> ' +
-                        code +
-                        '</p>' +
+                        <h4>
+                            Sender Information
+                        </h4>
 
-                        '<p><strong>Service:</strong> International Freight</p>' +
+                        <p>
 
-                    '</div>' +
+                            <strong>
+                                Name:
+                            </strong>
 
+                            ${shipment.sender}
 
-                    '<div class="info-card">' +
+                        </p>
 
-                        '<h4>Current Status</h4>' +
+                        <p>
 
-                        '<p>' +
-                        shipment.status +
-                        '</p>' +
+                            <strong>
+                                Country:
+                            </strong>
 
-                        '<p><strong>Location:</strong> In Transit</p>' +
+                            ${shipment.senderCountry}
 
-                    '</div>' +
+                        </p>
 
+                        <p>
 
-                '</div>' +
+                            <strong>
+                                Location:
+                            </strong>
 
+                            ${shipment.senderLocation}
 
-                '<div class="status-panel">' +
+                        </p>
 
-                    '<h4>Shipment Status</h4>' +
-
-                    '<strong>' +
-                    shipment.status +
-                    '</strong>' +
-
-                '</div>' +
-
-
-                '<h4 class="section-title">' +
-                'Shipment Progress' +
-                '</h4>' +
+                    </div>
 
 
-                '<div class="timeline">' +
+                    <!-- RECEIVER -->
 
-                    timeline +
+                    <div class="info-card">
 
-                '</div>' +
+                        <h4>
+                            Receiver Information
+                        </h4>
+
+                        <p>
+
+                            <strong>
+                                Name:
+                            </strong>
+
+                            ${shipment.recipient}
+
+                        </p>
+
+                        <p>
+
+                            <strong>
+                                Country:
+                            </strong>
+
+                            ${shipment.country}
+
+                        </p>
+
+                        <p>
+
+                            <strong>
+                                Destination:
+                            </strong>
+
+                            ${shipment.destination}
+
+                        </p>
+
+                    </div>
 
 
-            '</div>' +
+                    <!-- TRANSPORTATION -->
 
-        '</div>';
+                    <div class="info-card">
+
+                        <h4>
+                            Transportation
+                        </h4>
+
+                        <p>
+
+                            <strong>
+                                Nearest Airport:
+                            </strong>
+
+                            ${shipment.airport}
+
+                        </p>
+
+                        <p>
+
+                            <strong>
+                                Service:
+                            </strong>
+
+                            International Freight
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- PACKAGE -->
+
+                    <div class="info-card">
+
+                        <h4>
+                            Package Details
+                        </h4>
+
+                        <p>
+
+                            <strong>
+                                Package Type:
+                            </strong>
+
+                            ${shipment.package}
+
+                        </p>
+
+                        <p>
+
+                            <strong>
+                                Weight:
+                            </strong>
+
+                            ${shipment.weight} kg
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- DESTINATION -->
+
+                    <div class="info-card">
+
+                        <h4>
+                            Destination
+                        </h4>
+
+                        <p>
+
+                            <strong>
+                                Country:
+                            </strong>
+
+                            ${shipment.country}
+
+                        </p>
+
+                        <p>
+
+                            <strong>
+                                City:
+                            </strong>
+
+                            ${shipment.destination}
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SHIPMENT PROGRESS -->
+
+                <h4 class="section-title">
+                    Shipment Progress
+                </h4>
+
+
+                <div class="timeline">
+
+                    ${timeline}
+
+                </div>
+
+
+                <!-- SHIPMENT ROUTE -->
+
+                <h4 class="section-title">
+                    Shipment Route
+                </h4>
+
+
+                <div class="info-card">
+
+                    <p>
+
+                        <strong>
+                            Origin:
+                        </strong>
+
+                        ${shipment.senderLocation},
+                        ${shipment.senderCountry}
+
+                    </p>
+
+                    <p>
+
+                        <strong>
+                            Transit:
+                        </strong>
+
+                        International Transportation
+
+                    </p>
+
+                    <p>
+
+                        <strong>
+                            Destination:
+                        </strong>
+
+                        ${shipment.destination},
+                        ${shipment.country}
+
+                    </p>
+
+                </div>
+
+
+                <!-- SHIPMENT HISTORY -->
+
+                <h4 class="section-title">
+                    Shipment History
+                </h4>
+
+
+                <div class="info-card">
+
+                    ${history}
+
+                </div>
+
+
+                <!-- PARCEL INFORMATION -->
+
+                <h4 class="section-title">
+                    Parcel Information
+                </h4>
+
+
+                <div class="shipment-grid">
+
+
+                    <div class="info-card">
+
+                        <h4>
+                            Package Type
+                        </h4>
+
+                        <p>
+                            ${shipment.package}
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <h4>
+                            Weight
+                        </h4>
+
+                        <p>
+                            ${shipment.weight} kg
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <h4>
+                            Delivery Mode
+                        </h4>
+
+                        <p>
+                            International Freight
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <h4>
+                            Tracking Status
+                        </h4>
+
+                        <p>
+                            ${shipment.status}
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    `;
 }
 
 
@@ -191,32 +652,127 @@ function trackShipment() {
 
 function createShipment() {
 
-    const tracking =
-        document.getElementById("adminTracking").value.trim();
+    const senderElement =
+        document.getElementById("adminSender");
+
+    const senderCountryElement =
+        document.getElementById("adminSenderCountry");
+
+    const senderLocationElement =
+        document.getElementById("adminSenderLocation");
+
+    const recipientElement =
+        document.getElementById("adminRecipient");
+
+    const countryElement =
+        document.getElementById("adminCountry");
+
+    const destinationElement =
+        document.getElementById("adminDestination");
+
+    const airportElement =
+        document.getElementById("adminAirport");
+
+    const packageElement =
+        document.getElementById("adminPackage");
+
+    const weightElement =
+        document.getElementById("adminWeight");
+
+    const statusElement =
+        document.getElementById("adminStatus");
+
+
+    if (
+        !senderElement ||
+        !senderCountryElement ||
+        !senderLocationElement ||
+        !recipientElement ||
+        !countryElement ||
+        !destinationElement ||
+        !airportElement ||
+        !packageElement ||
+        !weightElement ||
+        !statusElement
+    ) {
+        return;
+    }
+
+
+    const sender =
+        senderElement.value.trim();
+
+    const senderCountry =
+        senderCountryElement.value.trim();
+
+    const senderLocation =
+        senderLocationElement.value.trim();
 
     const recipient =
-        document.getElementById("adminRecipient").value.trim();
+        recipientElement.value.trim();
+
+    const country =
+        countryElement.value.trim();
 
     const destination =
-        document.getElementById("adminDestination").value.trim();
+        destinationElement.value.trim();
+
+    const airport =
+        airportElement.value.trim();
+
+    const packageType =
+        packageElement.value.trim();
+
+    const weight =
+        weightElement.value.trim();
 
     const status =
-        document.getElementById("adminStatus").value;
+        statusElement.value;
 
 
-    if (!tracking || !recipient || !destination) {
+    if (
+        !sender ||
+        !senderCountry ||
+        !senderLocation ||
+        !recipient ||
+        !country ||
+        !destination ||
+        !airport ||
+        !packageType ||
+        !weight
+    ) {
 
-        alert("Please complete all shipment fields.");
+        alert(
+            "Please complete all shipment fields."
+        );
 
         return;
     }
 
 
+    const tracking =
+        generateTrackingNumber();
+
+
     shipments[tracking] = {
+
+        sender: sender,
+
+        senderCountry: senderCountry,
+
+        senderLocation: senderLocation,
 
         recipient: recipient,
 
+        country: country,
+
         destination: destination,
+
+        airport: airport,
+
+        package: packageType,
+
+        weight: weight,
 
         status: status
 
@@ -229,16 +785,32 @@ function createShipment() {
     );
 
 
-    alert("Shipment created successfully!");
+    alert(
+        "Shipment created successfully!\n\n" +
+        "Tracking Number: " +
+        tracking
+    );
 
 
-    document.getElementById("adminTracking").value = "";
+    senderElement.value = "";
 
-    document.getElementById("adminRecipient").value = "";
+    senderCountryElement.value = "";
 
-    document.getElementById("adminDestination").value = "";
+    senderLocationElement.value = "";
 
-    document.getElementById("adminStatus").value = "Processing";
+    recipientElement.value = "";
+
+    countryElement.value = "";
+
+    destinationElement.value = "";
+
+    airportElement.value = "";
+
+    packageElement.value = "";
+
+    weightElement.value = "";
+
+    statusElement.value = "Processing";
 }
 
 
@@ -248,22 +820,51 @@ function createShipment() {
 
 function updateShipmentStatus() {
 
+    const trackingElement =
+        document.getElementById("updateTracking");
+
+    const statusElement =
+        document.getElementById("updateStatus");
+
+
+    if (
+        !trackingElement ||
+        !statusElement
+    ) {
+        return;
+    }
+
+
     const tracking =
-        document.getElementById("updateTracking").value.trim();
+        trackingElement.value.trim().toUpperCase();
+
 
     const newStatus =
-        document.getElementById("updateStatus").value;
+        statusElement.value;
 
 
-    if (!shipments[tracking]) {
+    if (!tracking) {
 
-        alert("Shipment not found.");
+        alert(
+            "Please enter a tracking number."
+        );
 
         return;
     }
 
 
-    shipments[tracking].status = newStatus;
+    if (!shipments[tracking]) {
+
+        alert(
+            "Shipment not found."
+        );
+
+        return;
+    }
+
+
+    shipments[tracking].status =
+        newStatus;
 
 
     localStorage.setItem(
@@ -272,10 +873,76 @@ function updateShipmentStatus() {
     );
 
 
-    alert("Shipment status updated successfully!");
+    alert(
+        "Shipment status updated successfully!"
+    );
 
 
-    document.getElementById("updateTracking").value = "";
+    trackingElement.value = "";
 
-    document.getElementById("updateStatus").value = "Processing";
+    statusElement.value =
+        "Processing";
+}
+
+
+// =========================
+// SUPPORT CHAT
+// =========================
+
+function toggleChat() {
+
+    const chatBox =
+        document.getElementById("chatBox");
+
+
+    if (!chatBox) {
+        return;
+    }
+
+
+    chatBox.classList.toggle("open");
+}
+
+
+// =========================
+// CHAT RESPONSES
+// =========================
+
+function chatMessage(type) {
+
+    const response =
+        document.getElementById("chatResponse");
+
+
+    if (!response) {
+        return;
+    }
+
+
+    if (type === "tracking") {
+
+        response.innerHTML =
+            "Please enter your AeroVanta tracking number in the Track & Trace section.";
+
+    }
+
+
+    else if (type === "services") {
+
+        response.innerHTML =
+            "AeroVanta provides air freight, ocean freight, road transportation and warehousing services.";
+
+    }
+
+
+    else if (type === "support") {
+
+        response.innerHTML =
+            "For support enquiries, please contact support@aerovantalogistics.com.";
+
+    }
+
+
+    response.style.display =
+        "block";
 }

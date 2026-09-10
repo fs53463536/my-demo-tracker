@@ -1,293 +1,690 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AeroVanta Logistics</title>
+```
+<title>AeroVanta Logistics | Global Freight & Logistics</title>
 
-    <link rel="stylesheet" href="style.css">
+<meta
+    name="description"
+    content="AeroVanta Logistics provides freight, shipment tracking and logistics services."
+>
+
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<!-- =========================
+     HEADER
+========================== -->
 
-    <header class="site-header">
+<header class="site-header">
 
-        <div class="logo">
-            <strong>AEROVANTA</strong>
-            <span>LOGISTICS</span>
+```
+<div class="logo">
+    <strong>AEROVANTA</strong>
+    <span>LOGISTICS</span>
+</div>
+
+<nav class="main-nav">
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#tracking">Track Shipment</a>
+    <a href="#contact">Contact</a>
+</nav>
+```
+
+</header>
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero">
+
+```
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+
+    <p class="eyebrow">
+        GLOBAL FREIGHT & LOGISTICS
+    </p>
+
+    <h1>
+        Moving Your World
+        <br>
+        Forward.
+    </h1>
+
+    <p class="hero-text">
+        Reliable logistics solutions designed for
+        modern international transportation by air,
+        sea and road.
+    </p>
+
+    <div class="hero-actions">
+
+        <a href="#tracking" class="hero-button">
+            Track Your Shipment
+        </a>
+
+        <a href="#services" class="hero-secondary">
+            Explore Services
+        </a>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     TRUST BAR
+========================== -->
+
+<section class="trust-bar">
+
+```
+<div class="trust-item">
+    <strong>GLOBAL</strong>
+    <span>Logistics Network</span>
+</div>
+
+<div class="trust-item">
+    <strong>24/7</strong>
+    <span>Shipment Visibility</span>
+</div>
+
+<div class="trust-item">
+    <strong>AIR • SEA • ROAD</strong>
+    <span>Transportation Solutions</span>
+</div>
+
+<div class="trust-item">
+    <strong>SECURE</strong>
+    <span>Cargo Handling</span>
+</div>
+```
+
+</section>
+
+<!-- =========================
+     TRACKING
+========================== -->
+
+<section class="tracking-section" id="tracking">
+
+```
+<div class="section-heading">
+
+    <p class="eyebrow">
+        SHIPMENT TRACKING
+    </p>
+
+    <h2>
+        Track & Trace Your Shipment
+    </h2>
+
+    <p>
+        Enter your AeroVanta tracking number to view
+        shipment information and current progress.
+    </p>
+
+</div>
+
+
+<div class="tracking-search">
+
+    <input
+        type="text"
+        id="trackingCode"
+        placeholder="Enter tracking number"
+        autocomplete="off"
+    >
+
+    <button onclick="trackShipment()">
+        Track Shipment
+    </button>
+
+</div>
+
+
+<p class="tracking-note">
+    Enter your tracking number above.
+</p>
+
+
+<div id="trackingResult"></div>
+```
+
+</section>
+
+<!-- =========================
+     SERVICES
+========================== -->
+
+<section class="services-section" id="services">
+
+```
+<div class="section-heading">
+
+    <p class="eyebrow">
+        OUR SERVICES
+    </p>
+
+    <h2>
+        Global Logistics Solutions
+    </h2>
+
+    <p>
+        Flexible transportation and logistics services
+        for different shipment requirements.
+    </p>
+
+</div>
+
+
+<div class="service-grid">
+
+    <div class="service-card">
+
+        <div class="service-icon">
+            ✈
         </div>
 
-        <nav>
-            <a href="#">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#tracking">Track Shipment</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <h3>
+            Air Freight
+        </h3>
 
-    </header>
+        <p>
+            Fast transportation solutions for
+            time-sensitive international cargo.
+        </p>
+
+    </div>
 
 
-    <!-- HERO -->
+    <div class="service-card">
 
-    <section class="hero">
-
-        <div class="hero-overlay"></div>
-
-        <div class="hero-content">
-
-            <p class="eyebrow">
-                GLOBAL FREIGHT & LOGISTICS
-            </p>
-
-            <h1>
-                Moving Your World<br>
-                Forward.
-            </h1>
-
-            <p class="hero-text">
-                Reliable international logistics solutions for
-                air, sea and road transportation.
-            </p>
-
-            <div class="hero-actions">
-
-                <a href="#tracking" class="hero-button">
-                    Track Your Shipment
-                </a>
-
-                <a href="#services" class="hero-secondary">
-                    Explore Services
-                </a>
-
-            </div>
-
+        <div class="service-icon">
+            🚢
         </div>
 
-    </section>
+        <h3>
+            Ocean Freight
+        </h3>
+
+        <p>
+            Flexible ocean transportation solutions
+            for larger and commercial shipments.
+        </p>
+
+    </div>
 
 
-    <!-- TRACKING -->
+    <div class="service-card">
 
-    <section class="tracking-section" id="tracking">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                SHIPMENT TRACKING
-            </p>
-
-            <h2>
-                Track & Trace Your Shipment
-            </h2>
-
-            <p>
-                Enter your AeroVanta tracking number to view
-                the latest shipment information.
-            </p>
-
+        <div class="service-icon">
+            🚚
         </div>
 
+        <h3>
+            Road Transportation
+        </h3>
 
-        <div class="tracking-search">
+        <p>
+            Reliable ground transportation connecting
+            regional and international destinations.
+        </p>
 
-            <input
-                type="text"
-                id="trackingCode"
-                placeholder="Enter tracking number"
-            >
+    </div>
 
-            <button onclick="trackShipment()">
-                Track Shipment
-            </button>
 
+    <div class="service-card">
+
+        <div class="service-icon">
+            📦
         </div>
 
+        <h3>
+            Warehousing
+        </h3>
 
-        <div id="trackingResult"></div>
+        <p>
+            Secure storage, handling and distribution
+            solutions for shipments and cargo.
+        </p>
 
-    </section>
+    </div>
 
 
-    <!-- SERVICES -->
+    <div class="service-card">
 
-    <section class="services-section" id="services">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                OUR SERVICES
-            </p>
-
-            <h2>
-                Global Logistics Solutions
-            </h2>
-
-            <p>
-                Flexible transportation and logistics solutions
-                designed for international movement.
-            </p>
-
+        <div class="service-icon">
+            🔐
         </div>
 
+        <h3>
+            Secure Logistics
+        </h3>
 
-        <div class="service-grid">
+        <p>
+            Structured handling procedures designed
+            for sensitive and important shipments.
+        </p>
 
-            <div class="service-card">
-
-                <div class="service-icon">✈</div>
-
-                <h3>
-                    Air Freight
-                </h3>
-
-                <p>
-                    Fast and dependable transportation for
-                    time-sensitive international shipments.
-                </p>
-
-            </div>
+    </div>
 
 
-            <div class="service-card">
+    <div class="service-card">
 
-                <div class="service-icon">🚢</div>
-
-                <h3>
-                    Ocean Freight
-                </h3>
-
-                <p>
-                    Flexible international cargo solutions
-                    for larger shipments and commercial freight.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">🚚</div>
-
-                <h3>
-                    Road Transportation
-                </h3>
-
-                <p>
-                    Efficient ground transportation connecting
-                    regional and international destinations.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">📦</div>
-
-                <h3>
-                    Warehousing
-                </h3>
-
-                <p>
-                    Secure storage, handling and distribution
-                    solutions for your cargo.
-                </p>
-
-            </div>
-
+        <div class="service-icon">
+            📋
         </div>
 
-    </section>
+        <h3>
+            Packaging & Storage
+        </h3>
+
+        <p>
+            Organized preparation, packaging and
+            temporary storage for cargo movement.
+        </p>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     WHY AEROVANTA
+========================== -->
+
+<section class="why-section">
+
+```
+<div class="why-container">
+
+    <div class="why-content">
+
+        <p class="eyebrow">
+            WHY AEROVANTA
+        </p>
+
+        <h2>
+            Logistics Without Borders
+        </h2>
+
+        <p>
+            AeroVanta Logistics connects transportation,
+            tracking and logistics management into
+            one streamlined experience.
+        </p>
+
+        <p>
+            Follow shipment progress through a
+            structured tracking system.
+        </p>
+
+        <a href="#contact" class="dark-button">
+            Speak With Support
+        </a>
+
+    </div>
 
 
-    <!-- ABOUT -->
+    <div class="why-grid">
 
-    <section class="about-section" id="about">
-
-        <div class="about-content">
-
-            <p class="eyebrow">
-                WHY AEROVANTA
-            </p>
-
-            <h2>
-                Logistics Without Borders
-            </h2>
-
-            <p>
-                AeroVanta Logistics is an independent logistics
-                demonstration platform designed around modern
-                global freight operations and shipment visibility.
-            </p>
-
-            <p>
-                Our concept brings air, sea and road transportation
-                together through a simple and professional tracking
-                experience.
-            </p>
-
+        <div class="why-card">
+            <strong>✓</strong>
+            <h3>Track & Trace</h3>
+            <p>Follow shipment progress through a structured tracking system.</p>
         </div>
 
-    </section>
-
-
-    <!-- CONTACT -->
-
-    <section class="contact-section" id="contact">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                SUPPORT
-            </p>
-
-            <h2>
-                Need Assistance?
-            </h2>
-
-            <p>
-                Our demonstration support team is available to
-                assist with shipment enquiries.
-            </p>
-
+        <div class="why-card">
+            <strong>✓</strong>
+            <h3>Secure Warehousing</h3>
+            <p>Organized storage and handling for cargo.</p>
         </div>
 
-
-        <div class="contact-box">
-
-            <div>
-                <strong>
-                    Customer Support
-                </strong>
-
-                <p>
-                    support@aerovantalogistics.com
-                </p>
-            </div>
-
-
-            <div>
-                <strong>
-                    Global Operations
-                </strong>
-
-                <p>
-                    International Freight & Logistics
-                </p>
-            </div>
-
+        <div class="why-card">
+            <strong>✓</strong>
+            <h3>Express Delivery</h3>
+            <p>Transportation options designed for time-sensitive movement.</p>
         </div>
 
-    </section>
+        <div class="why-card">
+            <strong>✓</strong>
+            <h3>Global Coverage</h3>
+            <p>International destinations across multiple transportation modes.</p>
+        </div>
+
+        <div class="why-card">
+            <strong>✓</strong>
+            <h3>24/7 Support</h3>
+            <p>Assistance for shipment enquiries and tracking questions.</p>
+        </div>
+
+        <div class="why-card">
+            <strong>✓</strong>
+            <h3>Professional Service</h3>
+            <p>A clean and structured logistics management experience.</p>
+        </div>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     ACHIEVEMENTS
+========================== -->
+
+<section class="stats-section">
+
+```
+<div class="section-heading">
+
+    <p class="eyebrow">
+        OUR PERFORMANCE
+    </p>
+
+    <h2>
+        Built Around Reliability
+    </h2>
+
+    <p>
+        Structured logistics management and shipment visibility.
+    </p>
+
+</div>
 
 
-    <!-- FOOTER -->
+<div class="stats-grid">
 
-    <footer>
+    <div class="stat-card">
+        <strong>10K+</strong>
+        <span>Shipments</span>
+    </div>
+
+    <div class="stat-card">
+        <strong>120+</strong>
+        <span>Countries</span>
+    </div>
+
+    <div class="stat-card">
+        <strong>98%</strong>
+        <span>Tracking Precision</span>
+    </div>
+
+    <div class="stat-card">
+        <strong>24/7</strong>
+        <span>Platform Access</span>
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     TESTIMONIALS
+========================== -->
+
+<section class="testimonials-section">
+
+```
+<div class="section-heading">
+
+    <p class="eyebrow">
+        CLIENT EXPERIENCE
+    </p>
+
+    <h2>
+        What Our Clients Say
+    </h2>
+
+</div>
+
+
+<div class="testimonial-grid">
+
+    <div class="testimonial-card">
+
+        <p>
+            “The tracking experience is simple,
+            clear and easy to understand.”
+        </p>
+
+        <strong>
+            Client
+        </strong>
+
+        <span>
+            International Shipment
+        </span>
+
+    </div>
+
+
+    <div class="testimonial-card">
+
+        <p>
+            “A clean logistics platform makes it
+            much easier to understand shipment progress.”
+        </p>
+
+        <strong>
+            Customer
+        </strong>
+
+        <span>
+            Global Freight
+        </span>
+
+    </div>
+
+
+    <div class="testimonial-card">
+
+        <p>
+            “The shipment timeline gives a clear
+            picture of the delivery journey.”
+        </p>
+
+        <strong>
+            Partner
+        </strong>
+
+        <span>
+            Logistics Operations
+        </span>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     PARTNERS
+========================== -->
+
+<section class="partners-section">
+
+```
+<div class="section-heading">
+
+    <p class="eyebrow">
+        LOGISTICS NETWORK
+    </p>
+
+    <h2>
+        Transportation Partners
+    </h2>
+
+    <p>
+        Supporting multiple transportation providers.
+    </p>
+
+</div>
+
+
+<div class="partner-grid">
+
+    <div>
+        AIR CARGO
+    </div>
+
+    <div>
+        OCEAN FREIGHT
+    </div>
+
+    <div>
+        ROAD NETWORK
+    </div>
+
+    <div>
+        GLOBAL WAREHOUSE
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     CTA
+========================== -->
+
+<section class="cta-section">
+
+```
+<div class="cta-content">
+
+    <p class="eyebrow">
+        READY TO MOVE?
+    </p>
+
+    <h2>
+        Ready to Ship With Confidence?
+    </h2>
+
+    <p>
+        Explore our logistics services or track a
+        shipment using your AeroVanta tracking number.
+    </p>
+
+    <div class="cta-actions">
+
+        <a href="#tracking" class="cta-button">
+            Track Shipment
+        </a>
+
+        <a href="#contact" class="cta-outline">
+            Contact Support
+        </a>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section class="contact-section" id="contact">
+
+```
+<div class="section-heading">
+
+    <p class="eyebrow">
+        CUSTOMER SUPPORT
+    </p>
+
+    <h2>
+        Need Assistance?
+    </h2>
+
+    <p>
+        Contact support for shipment enquiries
+        and tracking questions.
+    </p>
+
+</div>
+
+
+<div class="contact-box">
+
+    <div>
+
+        <strong>
+            Customer Support
+        </strong>
+
+        <p>
+            support@aerovantalogistics.com
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <strong>
+            Global Operations
+        </strong>
+
+        <p>
+            International Freight & Logistics
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <strong>
+            Platform
+        </strong>
+
+        <p>
+            Shipment Management Platform
+        </p>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+```
+<div class="footer-container">
+
+    <div class="footer-brand">
 
         <div class="footer-logo">
 
@@ -305,14 +702,151 @@
             Global Freight & Logistics Solutions
         </p>
 
-        <small>
-            Independent demonstration platform.
-        </small>
-
-    </footer>
+    </div>
 
 
-    <script src="script.js"></script>
+    <div class="footer-links">
+
+        <h4>
+            Company
+        </h4>
+
+        <a href="#services">
+            Services
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <h4>
+            Tracking
+        </h4>
+
+        <a href="#tracking">
+            Track Shipment
+        </a>
+
+        <a href="#tracking">
+            Track & Trace
+        </a>
+
+        <a href="#contact">
+            Support
+        </a>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <h4>
+            Services
+        </h4>
+
+        <a href="#services">
+            Air Freight
+        </a>
+
+        <a href="#services">
+            Ocean Freight
+        </a>
+
+        <a href="#services">
+            Road Transportation
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+    <span>
+        © 2026 AeroVanta Logistics
+    </span>
+
+    <span>
+        Shipment Management Platform
+    </span>
+
+</div>
+```
+
+</footer>
+
+<!-- =========================
+     SUPPORT CHAT
+========================== -->
+
+<button
+class="chat-button"
+onclick="toggleChat()"
+aria-label="Open support chat"
+
+>
+
+```
+?
+```
+
+</button>
+
+<div
+    class="chat-box"
+    id="chatBox"
+>
+
+```
+<div class="chat-header">
+
+    <strong>
+        AeroVanta Support
+    </strong>
+
+    <button onclick="toggleChat()">
+        ×
+    </button>
+
+</div>
+
+
+<div class="chat-body">
+
+    <p>
+        Hello! How can we help you?
+    </p>
+
+    <button onclick="chatMessage('tracking')">
+        Track a shipment
+    </button>
+
+    <button onclick="chatMessage('services')">
+        Ask about services
+    </button>
+
+    <button onclick="chatMessage('support')">
+        Contact support
+    </button>
+
+    <div id="chatResponse"></div>
+
+</div>
+```
+
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script src="script.js"></script>
 
 </body>
 </html>

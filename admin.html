@@ -4,63 +4,215 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeroVanta Admin</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>AeroVanta Logistics</h1>
+<header class="site-header">
 
-    <h2>Shipment Control Panel</h2>
+    <div class="logo">
+        <strong>AEROVANTA</strong>
+        <span>GLOBAL LOGISTICS</span>
+    </div>
 
-    <p>Create and manage demo shipments from here.</p>
+</header>
 
-    <hr>
 
-    <h3>Create Demo Shipment</h3>
+<section class="tracking-section">
 
-    <label>Tracking Number</label><br>
-    <input type="text" id="adminTracking"><br><br>
+    <div class="section-heading">
 
-    <label>Recipient</label><br>
-    <input type="text" id="adminRecipient"><br><br>
+        <p class="eyebrow">SHIPMENT MANAGEMENT</p>
 
-    <label>Destination</label><br>
-    <input type="text" id="adminDestination"><br><br>
+        <h2>Create Shipment</h2>
 
-    <label>Status</label><br>
-    <select id="adminStatus">
-        <option>Processing</option>
-        <option>Picked Up</option>
-        <option>In Transit</option>
-        <option>Arrived</option>
-        <option>Delivered</option>
-    </select>
+        <p>
+            Create and manage shipment records.
+        </p>
 
-    <br><br>
+    </div>
 
-    <button onclick="createShipment()">Create Shipment</button>
 
-    <hr>
+    <div class="tracking-search"
+        style="display:block; max-width:700px; margin:0 auto;">
 
-    <h3>Update Shipment Status</h3>
+        <h3>Sender Information</h3>
 
-    <label>Tracking Number</label><br>
-    <input type="text" id="updateTracking"><br><br>
+        <input
+            type="text"
+            id="adminSender"
+            placeholder="Sender name"
+            autocomplete="off">
 
-    <label>New Status</label><br>
-    <select id="updateStatus">
-        <option>Processing</option>
-        <option>Picked Up</option>
-        <option>In Transit</option>
-        <option>Arrived</option>
-        <option>Delivered</option>
-    </select>
+        <br><br>
 
-    <br><br>
+        <input
+            type="text"
+            id="adminSenderCountry"
+            placeholder="Sender country"
+            autocomplete="off">
 
-    <button onclick="updateShipmentStatus()">Update Status</button>
+        <br><br>
 
-    <script src="script.js"></script>
+        <input
+            type="text"
+            id="adminSenderLocation"
+            placeholder="Sender location / city"
+            autocomplete="off">
+
+        <br><br>
+
+
+        <h3>Receiver Information</h3>
+
+        <input
+            type="text"
+            id="adminRecipient"
+            placeholder="Recipient name"
+            autocomplete="off">
+
+        <br><br>
+
+        <input
+            type="text"
+            id="adminCountry"
+            placeholder="Recipient country"
+            autocomplete="off">
+
+        <br><br>
+
+        <input
+            type="text"
+            id="adminDestination"
+            placeholder="Destination / City"
+            autocomplete="off">
+
+        <br><br>
+
+
+        <h3>Shipment Details</h3>
+
+        <input
+            type="text"
+            id="adminAirport"
+            placeholder="Nearest airport"
+            autocomplete="off">
+
+        <br><br>
+
+        <input
+            type="text"
+            id="adminPackage"
+            placeholder="Package type"
+            autocomplete="off">
+
+        <br><br>
+
+        <input
+            type="text"
+            id="adminWeight"
+            placeholder="Weight (kg)"
+            autocomplete="off">
+
+        <br><br>
+
+        <select id="adminStatus">
+
+            <option value="Processing">
+                Processing
+            </option>
+
+            <option value="Picked Up">
+                Picked Up
+            </option>
+
+            <option value="In Transit">
+                In Transit
+            </option>
+
+            <option value="Arrived">
+                Arrived
+            </option>
+
+            <option value="Delivered">
+                Delivered
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button onclick="createShipment()">
+            Generate Shipment
+        </button>
+
+    </div>
+
+
+
+    <div class="section-heading" style="margin-top:60px;">
+
+        <p class="eyebrow">
+            STATUS MANAGEMENT
+        </p>
+
+        <h2>Update Shipment</h2>
+
+        <p>
+            Update the current status of an existing shipment.
+        </p>
+
+    </div>
+
+
+    <div class="tracking-search"
+        style="display:block; max-width:700px; margin:0 auto;">
+
+        <input
+            type="text"
+            id="updateTracking"
+            placeholder="Enter tracking number"
+            autocomplete="off">
+
+        <br><br>
+
+        <select id="updateStatus">
+
+            <option value="Processing">
+                Processing
+            </option>
+
+            <option value="Picked Up">
+                Picked Up
+            </option>
+
+            <option value="In Transit">
+                In Transit
+            </option>
+
+            <option value="Arrived">
+                Arrived
+            </option>
+
+            <option value="Delivered">
+                Delivered
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button onclick="updateShipmentStatus()">
+            Update Shipment Status
+        </button>
+
+    </div>
+
+</section>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
