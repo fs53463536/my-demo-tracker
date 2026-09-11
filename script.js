@@ -289,8 +289,6 @@ function trackShipment() {
             <div class="shipment-body">
 
 
-                <!-- CURRENT STATUS -->
-
                 <div class="status-panel">
 
                     <h4>
@@ -314,8 +312,6 @@ function trackShipment() {
                 </div>
 
 
-                <!-- SHIPMENT INFORMATION -->
-
                 <h4 class="section-title">
                     Shipment Information
                 </h4>
@@ -323,8 +319,6 @@ function trackShipment() {
 
                 <div class="shipment-grid">
 
-
-                    <!-- SENDER -->
 
                     <div class="info-card">
 
@@ -365,8 +359,6 @@ function trackShipment() {
                     </div>
 
 
-                    <!-- RECEIVER -->
-
                     <div class="info-card">
 
                         <h4>
@@ -406,8 +398,6 @@ function trackShipment() {
                     </div>
 
 
-                    <!-- TRANSPORTATION -->
-
                     <div class="info-card">
 
                         <h4>
@@ -437,8 +427,6 @@ function trackShipment() {
                     </div>
 
 
-                    <!-- PACKAGE -->
-
                     <div class="info-card">
 
                         <h4>
@@ -467,8 +455,6 @@ function trackShipment() {
 
                     </div>
 
-
-                    <!-- DESTINATION -->
 
                     <div class="info-card">
 
@@ -502,8 +488,6 @@ function trackShipment() {
                 </div>
 
 
-                <!-- SHIPMENT PROGRESS -->
-
                 <h4 class="section-title">
                     Shipment Progress
                 </h4>
@@ -515,8 +499,6 @@ function trackShipment() {
 
                 </div>
 
-
-                <!-- SHIPMENT ROUTE -->
 
                 <h4 class="section-title">
                     Shipment Route
@@ -560,8 +542,6 @@ function trackShipment() {
                 </div>
 
 
-                <!-- SHIPMENT HISTORY -->
-
                 <h4 class="section-title">
                     Shipment History
                 </h4>
@@ -573,8 +553,6 @@ function trackShipment() {
 
                 </div>
 
-
-                <!-- PARCEL INFORMATION -->
 
                 <h4 class="section-title">
                     Parcel Information
