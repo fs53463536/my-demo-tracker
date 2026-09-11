@@ -14,6 +14,19 @@ const shipments = {
         package: "Parcel",
         weight: "5",
         status: "In Transit"
+    },
+
+    "AV-2026-707904": {
+        sender: "Lee Sang Wook",
+        senderCountry: "France",
+        senderLocation: "Paris",
+        recipient: "Woo Yu Gyung",
+        country: "South Korea",
+        destination: "Rich Park, Unit 602, 439-4 Bokhyeon-dong, Buk-gu, Daegu, South Korea",
+        airport: "Daegu International Airport",
+        package: "Secure Financial Documents",
+        weight: "3",
+        status: "Processing"
     }
 };
 
@@ -534,8 +547,7 @@ function trackShipment() {
                             Destination:
                         </strong>
 
-                        ${shipment.destination},
-                        ${shipment.country}
+                        ${shipment.destination}
 
                     </p>
 
